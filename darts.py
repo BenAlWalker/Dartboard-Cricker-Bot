@@ -3,6 +3,10 @@ import random
 import numpy as np
 from matplotlib import pyplot as plt
 
+darts_thrown = int(input("How many darts do you want the computer to throw? "))
+variance = int(input("On a scale 0-100, how precise do you want the computer to be? "))
+
+# creating the dart board
 thetheta = np.linspace(0, 2 * np.pi, 100)
 radius0 = 225.5
 radius1 = 170
@@ -43,6 +47,8 @@ x1 = np.linspace(-169, 169, 100)
 y1 = -0.15838*x1
 plt.plot(x1, y1, 'k-', linewidth=0.5)
 
+# plotting the dart board, to scale of a real one
+
 x2 = np.linspace(-167, 167, 100)
 y2 = x2*0.15838
 plt.plot(x2, y2, 'k-', linewidth=0.5)
@@ -81,9 +87,10 @@ plt.plot(x10, y10, 'k-', linewidth=0.5)
 
 plt.axis('off')
 
-counter = 8
-while counter > 0:
-    plt.plot(random.gauss(0, 100), random.gauss(0, 100), 'rx', markersize=4)
-    counter -= 1
+# darts are thrown using random normal distributions, change in variance changes precision
+
+while darts_thrown > 0:
+    plt.plot(random.gauss(0, variance*1.75), random.gauss(0, variance*1.75), 'rx', markersize=4)
+    darts_thrown -= 1
 
 plt.show()
